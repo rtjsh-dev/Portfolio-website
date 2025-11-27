@@ -1,36 +1,10 @@
-import mongoose, { Document, Model } from "mongoose";
-
-export interface ICertification extends Document {
+export interface ICertification {
+  id?: number;
   title: string;
   link: string;
   imageUrl: string;
   categories: string[];
-  issuedDate: Date;
+  issuedDate: string | Date;
 }
 
-const CertificationSchema = new mongoose.Schema<ICertification>({
-  title: { 
-    type: String, 
-    required: true 
-  },
-  link: { 
-    type: String, 
-    required: true 
-  },
-  imageUrl: { 
-    type: String, 
-    required: true 
-  },
-  categories: { 
-    type: [String], 
-    default: [] 
-  },
-  issuedDate: { 
-    type: Date, 
-    required: true 
-  },
-});
-
-export const Certification: Model<ICertification> =
-  mongoose.models.Certification ||
-  mongoose.model<ICertification>("Certification", CertificationSchema);
+export const Certification = null as any;

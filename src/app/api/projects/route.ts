@@ -1,18 +1,12 @@
 import { NextResponse } from "next/server";
-import connectToDb from "@/lib/mongodb";
-import Project from "@/models/project.model";
+import { projectsData } from "@/app/api/constants/projects";
 import { handleError } from "@/utils/errorHandler";
 
 const ADMIN_API_KEY = process.env.ADMIN_API_KEY;
 
 export async function GET() {
   try {
-    await connectToDb();
-
-    const projects = await Project.find({})
-      .sort({ order: 1 })
-      .lean();
-
+    const projects = projectsData.slice().sort((a, b) => a.order - b.order);
     return NextResponse.json(projects);
   } catch (error) {
     return handleError(error);
@@ -30,47 +24,8 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json();
-
-    await connectToDb();
-
-    // for bulk array
-    if (Array.isArray(body)) {
-      const newProjects = await Project.insertMany(
-        body.map(proj => ({
-          order: proj.order,
-          title: proj.title,
-          description: proj.description,
-          imageUrl: proj.imageUrl,
-          link: proj.link,
-          categories: proj.categories || [],
-        }))
-      );
-      return NextResponse.json(newProjects);
-    } 
-    
-    //for single object
-    else {
-
-      const { order, title, description, imageUrl, link, categories } = body;
-
-      if (!title || !description || !imageUrl || !link) {
-        return NextResponse.json(
-          { error: "title, description, imageUrl, and link are required" },
-          { status: 400 }
-        );
-      }
-
-      const newProject = await Project.create({
-        order: order || 0,
-        title,
-        description,
-        imageUrl,
-        link,
-        categories: categories || [],
-      });
-
-      return NextResponse.json(newProject);
-    }
+    // POST is not implemented for static data
+    return NextResponse.json({ error: "Not implemented for static data" }, { status: 501 });
   } 
   catch (error) {
     return handleError(error);
