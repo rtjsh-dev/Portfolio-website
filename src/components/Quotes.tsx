@@ -42,24 +42,24 @@ export default function QuoteOfTheDay() {
   if (loading) {
     return (
       <div className="flex justify-center items-center py-16">
-        <p className="text-gray-500 text-base">Loading Random Quote...</p>
+        <p className="text-gray-500 dark:text-gray-400 text-base">Loading Random Quote...</p>
       </div>
     );
   }
 
   return (
     <div className="container mx-auto px-4 py-6">
-      <h2 className="text-3xl font-bold text-center mb-8 text-black">Random Quote</h2>
+      <h2 className="text-3xl font-bold text-center mb-8 text-black dark:text-white">Random Quote</h2>
 
-      <Card className="max-w-3xl mx-auto p-6 shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-r from-blue-50 to-blue-100">
+      <Card className="max-w-3xl mx-auto p-6 shadow-lg hover:shadow-xl transition-shadow bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm">
         <CardContent className="flex flex-col items-center text-center gap-3">
           {/* Quote */}
-          <CardTitle className="text-lg md:text-xl font-semibold italic text-gray-800">
+          <CardTitle className="text-lg md:text-xl font-semibold italic text-gray-800 dark:text-white">
             "{quote.quote}"
           </CardTitle>
 
           {/* Author */}
-          <CardDescription className="text-sm md:text-base text-gray-500">
+          <CardDescription className="text-sm md:text-base text-gray-500 dark:text-gray-300">
             — {quote.author}
           </CardDescription>
 

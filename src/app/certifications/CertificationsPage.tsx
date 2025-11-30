@@ -46,7 +46,7 @@ export default function CertificationsPage() {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <h1 className="text-5xl font-bold mb-8 text-center text-black">
+      <h1 className="text-5xl font-bold mb-8 text-center text-black dark:text-white">
         My Certifications
       </h1>
 
@@ -89,7 +89,7 @@ export default function CertificationsPage() {
           {/* Certifications Grid */}
           <div className="py-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {filteredCerts.map((cert, index) => (
-              <Card key={cert.id} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex flex-col bg-gradient-to-r from-blue-50 to-blue-100">
+              <Card key={cert.id} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex flex-col bg-white dark:bg-gray-900">
                 <a
                   href={cert.link}
                   target="_blank"
@@ -114,7 +114,7 @@ export default function CertificationsPage() {
                 </a>
 
                 <CardContent className="text-center">
-                  <CardTitle className="text-lg font-semibold text-black mb-2">
+                  <CardTitle className="text-lg font-semibold text-black dark:text-white mb-2">
                     {cert.title}
                   </CardTitle>
 

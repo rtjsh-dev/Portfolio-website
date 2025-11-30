@@ -3,10 +3,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiNodedotjs, SiExpress, SiGit } from "react-icons/si";
+import { MdDevices } from "react-icons/md";
+import { FaGithub, FaInstagram, FaLinkedin, FaDiscord } from "react-icons/fa";
 
 import profile_pic from "../../../public/profile_pic.png";
 import QuoteOfTheDay from "@/components/Quotes";
+import AnimatedNumber from "@/components/AnimatedNumber";
+import { projectsData } from "../api/constants/projects";
+import { certifications } from "../api/constants/certifications";
 
 const experience = [
   {
@@ -46,190 +52,191 @@ const education = [
 
 export default function AboutPage() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const statsRef = useRef<HTMLElement | null>(null);
+  const [statsVisible, setStatsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = statsRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setStatsVisible(true);
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12 space-y-24">
+    <div className="max-w-7xl mx-auto px-4 py-12">
       {/* Heading */}
-      <h1 className="text-5xl font-bold text-center text-black">About Me</h1>
+      {/* <div className="text-center mb-10">
+        <h1 className="text-4xl md:text-5xl font-extrabold">About Me</h1>
+        <p className="mt-2 text-gray-600">A brief introduction, my skills, experience and education.</p>
+      </div> */}
 
-      {/* Main Section */}
-      <div className="flex flex-col md:flex-row items-center gap-12">
-        <div className="flex-shrink-0 w-72 h-72 relative rounded-lg overflow-hidden shadow-2xl">
-          <Image
-            src={profile_pic}
-            alt="Profile Picture"
-            width={288}
-            height={288}
-            className="object-cover w-full h-full"
-            priority
-          />
+      {/* Hero */}
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch mb-12">
+        <div className="col-span-1 flex items-center md:items-start justify-center md:justify-start">
+          <Card className="w-80 shadow-2xl overflow-hidden h-full bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm">
+            <div className="p-6 flex flex-col items-center gap-4 h-full">
+              <div className="w-52 h-52 rounded-xl overflow-hidden">
+                <Image src={profile_pic} alt="Profile" width={208} height={208} className="object-cover w-full h-full" priority />
+              </div>
+
+              <div className="text-center mt-2">
+                <h3 className="text-3xl font-semibold text-gray-900 dark:text-white">Rajesh Thapa</h3>
+                <p className="text-base text-gray-600 dark:text-gray-400">Frontend Developer</p>
+                <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">"Life has no Ctrl+Z."</p>
+              </div>
+
+              <div className="flex items-center justify-center gap-4 mt-3 text-lg">
+                <a href="https://github.com/rtjsh-dev" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hover:text-[#F05032] transition transform hover:scale-110">
+                  <FaGithub className="w-6 h-6" />
+                </a>
+                <a href="https://www.linkedin.com/in/rtjsh" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-[#0A66C2] transition transform hover:scale-110">
+                  <FaLinkedin className="w-6 h-6" />
+                </a>
+                <a href="https://instagram.com/_rt1s__/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[#E1306C] transition transform hover:scale-110">
+                  <FaInstagram className="w-6 h-6" />
+                </a>
+                <a href="https://discord.com/users/razesh_06878" target="_blank" rel="noopener noreferrer" aria-label="Discord" className="hover:text-[#5865F2] transition transform hover:scale-110">
+                  <FaDiscord className="w-6 h-6" />
+                </a>
+              </div>
+            </div>
+          </Card>
         </div>
-        <div className="flex-1 space-y-6">
-          <p className="text-lg text-gray-700 leading-relaxed">
-            Hello! I’m <strong>Rajesh</strong>, a passionate front-end developer and tech enthusiast.
-            My journey started few years ago exploring programming fundamentals. Since then, I’ve mastered
-            frontend development and exploring backend development with frameworks like <strong>React</strong>, <strong>Node.js</strong>, <strong>Express</strong>, and <strong>Next.js</strong>.
-          </p>
-          <p className="text-lg text-gray-700 leading-relaxed">
-            I also enjoy writing blogs and experimenting with solutions. I always explore new technologies,
-            frameworks, and industry trends to deliver modern digital solutions.
-          </p>
-          <div className="flex gap-4">
-            <a href="/cv.pdf" download>
-              <Button variant="default" className="cursor-pointer">Download CV</Button>
-            </a>
-            <Link href="/contact">
-              <Button variant="outline" className="cursor-pointer">Contact Me</Button>
-            </Link>
+
+        <div className="col-span-2 flex flex-col gap-6">
+          <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl p-6 shadow">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Hi, I'm Rajesh 👋</h2>
+            <p className="mt-3 text-gray-700 dark:text-gray-300 leading-relaxed">
+              I build modern, accessible, and responsive user interfaces using React, Next.js and Tailwind CSS. I enjoy turning complex problems into simple, beautiful designs and learning new technologies along the way.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <a href="/cv.pdf" download>
+                <Button variant="default">Download CV</Button>
+              </a>
+              <Link href="/contact">
+                <Button variant="outline">Contact Me</Button>
+              </Link>
+            </div>
           </div>
-        </div>
-      </div>
 
-      {/* Experience Timeline */}
-      <div className="space-y-12">
-        <h2 className="text-3xl font-bold text-center text-black">Experience</h2>
+          {/* Area of Expertise */}
+          <Card className="p-4 h-full bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm">
+            <CardTitle className="text-lg text-gray-900 dark:text-white">Area of Expertise</CardTitle>
 
-        {/* Desktop Timeline */}
-        <div className="hidden md:block relative">
-          <div className="z-10 absolute top-0 bottom-0 left-1/2 w-[2px] bg-gray-300 -translate-x-1/2"></div>
-          {experience.map((item, index) => (
-            <div
-              key={index}
-              className="relative flex flex-col md:flex-row items-center mb-16"
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              {/* Dot */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 border-2 border-black rounded-full bg-white flex items-center justify-center z-10">
-                <div className={`w-2 h-2 rounded-full transition-colors duration-300 ${hoveredIndex === index ? "bg-black" : "bg-white"}`}></div>
-              </div>
-
-              {/* Card */}
-              <div
-                className={`bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow-lg hover:shadow-2xl p-6 mt-6 md:mt-0 w-full md:w-1/2 transition-transform duration-500 hover:-translate-y-2 ${index % 2 === 0
-                  ? "md:mr-auto md:text-right md:pr-12"
-                  : "md:ml-auto md:text-left md:pl-12"
-                  }`}
-              >
-                <p className="text-gray-700">
-                  <strong className="text-lg">{item.title}</strong> <br />
-                  {item.description} <br />
-                  <span className="text-sm text-gray-500">{item.period}</span>
-                </p>
-              </div>
+            <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {[
+                { name: "React", icon: SiReact, url: "https://reactjs.org/", color: "#61DAFB" },
+                { name: "Next.js", icon: SiNextdotjs, url: "https://nextjs.org/", color: "#000000" },
+                { name: "TypeScript", icon: SiTypescript, url: "https://www.typescriptlang.org/", color: "#3178C6" },
+                { name: "Tailwind", icon: SiTailwindcss, url: "https://tailwindcss.com/", color: "#06B6D4" },
+                { name: "Node.js", icon: SiNodedotjs, url: "https://nodejs.org/", color: "#339933" },
+                { name: "Express", icon: SiExpress, url: "https://expressjs.com/", color: "#000000" },
+                { name: "Git", icon: SiGit, url: "https://git-scm.com/", color: "#F05032" },
+                { name: "Responsive UI", icon: MdDevices, url: "https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design", color: "#7C3AED" },
+              ].map((tech) => {
+                const Icon = tech.icon as any;
+                // use group hover so the icon color changes on tile hover
+                return (
+                  <a
+                    key={tech.name}
+                    href={tech.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex flex-col items-center justify-center gap-2 rounded-lg p-3 hover:shadow-md transition-shadow text-center bg-transparent"
+                    aria-label={tech.name}
+                    title={tech.name}
+                  >
+                    <Icon size={28} className={`text-gray-800 dark:text-gray-200 transition-colors duration-200 group-hover:text-[${tech.color}]`} />
+                    <span className="text-xs text-gray-700 dark:text-gray-300">{tech.name}</span>
+                  </a>
+                );
+              })}
             </div>
+          </Card>
+        </div>
+      </section>
+
+      {/* Experience as cards */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Experience</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {experience.map((item, idx) => (
+            <Card key={idx} className="p-6 hover:shadow-xl transition-shadow bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm">
+              <CardTitle className="text-lg text-gray-900 dark:text-white">{item.title}</CardTitle>
+              <CardDescription className="mt-2 text-sm text-gray-600 dark:text-gray-400">{item.description}</CardDescription>
+              <div className="mt-4 text-sm text-gray-500 dark:text-gray-400">{item.period}</div>
+            </Card>
           ))}
         </div>
-
-        {/* Mobile Timeline */}
-        <div className="md:hidden space-y-6">
-          {experience.map((item, index) => (
-            <div
-              key={index}
-              className="flex items-start relative"
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              <div className="flex-shrink-0 w-4 h-4 border-2 border-black rounded-full flex items-center justify-center z-10 relative">
-                <div className={`w-2 h-2 rounded-full transition-colors duration-300 ${hoveredIndex === index ? "bg-black" : "bg-white"}`}></div>
-              </div>
-              {index !== experience.length - 1 && (
-                <div className="absolute left-1.5 top-4 w-0.5 bg-gray-300 h-full"></div>
-              )}
-              <div className="ml-6 flex-1 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow-lg hover:shadow-2xl p-4 transition-transform duration-500 hover:-translate-y-1">
-                <p className="text-gray-700">
-                  <strong className="text-lg">{item.title}</strong> <br />
-                  {item.description} <br />
-                  <span className="text-sm text-gray-500">{item.period}</span>
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      </section>
 
       {/* Highlights / Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <Link href="/projects">
-          <Card className="text-center p-6 shadow-lg hover:shadow-xl transition-shadow cursor-pointer bg-gradient-to-r from-blue-50 to-blue-100">
-            <CardTitle className="text-2xl font-bold">Projects</CardTitle>
-            <CardDescription>Completed 10+ personal projects across frontend development and 2+ projects in full stack development.</CardDescription>
-          </Card>
-        </Link>
-        <Link href="/certifications">
-          <Card className="text-center p-6 shadow-lg hover:shadow-xl transition-shadow cursor-pointer bg-gradient-to-r from-blue-50 to-blue-100">
-            <CardTitle className="text-2xl font-bold">Certifications</CardTitle>
-            <CardDescription>Earned 10+ certifications from platforms like Programiz and freeCodeCamp.</CardDescription>
-          </Card>
-        </Link>
-        <Link href="/blogs">
-          <Card className="text-center p-6 shadow-lg hover:shadow-xl transition-shadow cursor-pointer bg-gradient-to-r from-blue-50 to-blue-100">
-            <CardTitle className="text-2xl font-bold">Blogs</CardTitle>
-            <CardDescription>Read my thoughts, tutorials, and experiences on web development and programming.</CardDescription>
-          </Card>
-        </Link>
-      </div>
-
-      {/* Education Timeline */}
-      <div className="space-y-12">
-        <h2 className="text-3xl font-bold text-center text-black">Education</h2>
-
-        {/* Desktop Timeline*/}
-        <div className="hidden md:block relative">
-          <div className="z-10 absolute top-0 bottom-0 left-1/2 w-[2px] bg-gray-300 -translate-x-1/2"></div>
-          {education.map((item, index) => (
-            <div
-              key={index}
-              className="relative flex flex-col md:flex-row items-center mb-16"
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 border-2 border-black rounded-full bg-white flex items-center justify-center z-10">
-                <div className={`w-2 h-2 rounded-full transition-colors duration-300 ${hoveredIndex === index ? "bg-black" : "bg-white"}`}></div>
+      <section className="mb-12" ref={statsRef}>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <Link href="/projects">
+            <Card className="text-center p-6 hover:shadow-xl transition-shadow bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm">
+              <div className="flex flex-col items-center">
+                <div className="flex items-baseline gap-1">
+                  <AnimatedNumber value={projectsData.length} start={statsVisible} className="text-4xl md:text-5xl font-extrabold text-black dark:text-white" />
+                  <span className="text-4xl md:text-5xl font-extrabold text-black dark:text-white">+</span>
+                </div>
+                <CardTitle className="text-lg font-semibold mt-3">Projects</CardTitle>
               </div>
-              <div
-                className={`bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow-lg hover:shadow-2xl p-6 mt-6 md:mt-0 w-full md:w-1/2 transition-transform duration-500 hover:-translate-y-2 ${index % 2 === 0
-                  ? "md:mr-auto md:text-right md:pr-12"
-                  : "md:ml-auto md:text-left md:pl-12"
-                  }`}
-              >
-                <p className="text-gray-700">
-                  <strong className="text-lg">{item.title}</strong> <br />
-                  {item.description} <br />
-                  <span className="text-sm text-gray-500">{item.period}</span>
-                </p>
+            </Card>
+          </Link>
+
+          <Link href="/certifications">
+            <Card className="text-center p-6 hover:shadow-xl transition-shadow bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm">
+              <div className="flex flex-col items-center">
+                <div className="flex items-baseline gap-1">
+                  <AnimatedNumber value={certifications.length} start={statsVisible} className="text-4xl md:text-5xl font-extrabold text-black dark:text-white" />
+                  <span className="text-4xl md:text-5xl font-extrabold text-black dark:text-white">+</span>
+                </div>
+                <CardTitle className="text-lg font-semibold mt-3">Certifications</CardTitle>
               </div>
+            </Card>
+          </Link>
+
+          <Link href="/blogs">
+            <Card className="text-center p-6 hover:shadow-xl transition-shadow bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm">
+              <div className="flex flex-col items-center">
+                <div className="flex items-baseline gap-1">
+                  <AnimatedNumber value={3} start={statsVisible} className="text-4xl md:text-5xl font-extrabold text-black dark:text-white" />
+                  <span className="text-4xl md:text-5xl font-extrabold text-black dark:text-white">+</span>
+                </div>
+                <CardTitle className="text-lg font-semibold mt-3">Blogs</CardTitle>
+              </div>
+            </Card>
+          </Link>
+        </div>
+      </section>
+
+      {/* Education */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Education</h2>
+        <div className="flex flex-col md:flex-row gap-4">
+          {education.map((item, idx) => (
+            <div key={idx} className="flex-1 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-4 shadow">
+              <h3 className="font-semibold text-gray-900 dark:text-white">{item.title}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{item.description}</p>
+              <div className="text-xs text-gray-500 dark:text-gray-400 mt-2">{item.period}</div>
             </div>
           ))}
         </div>
+      </section>
 
-        {/* Mobile */}
-        <div className="md:hidden space-y-6">
-          {education.map((item, index) => (
-            <div
-              key={index}
-              className="flex items-start relative"
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              <div className="flex-shrink-0 w-4 h-4 border-2 border-black rounded-full flex items-center justify-center z-10 relative">
-                <div className={`w-2 h-2 rounded-full transition-colors duration-300 ${hoveredIndex === index ? "bg-black" : "bg-white"}`}></div>
-              </div>
-              {index !== education.length - 1 && (
-                <div className="absolute left-1.5 top-4 w-0.5 bg-gray-300 h-full"></div>
-              )}
-              <div className="ml-6 flex-1 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow-lg hover:shadow-2xl p-4 transition-transform duration-500 hover:-translate-y-1">
-                <p className="text-gray-700">
-                  <strong className="text-lg">{item.title}</strong> <br />
-                  {item.description} <br />
-                  <span className="text-sm text-gray-500">{item.period}</span>
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      < QuoteOfTheDay />
+      <QuoteOfTheDay />
     </div>
   );
 }
