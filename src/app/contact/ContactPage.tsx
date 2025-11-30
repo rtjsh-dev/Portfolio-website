@@ -67,16 +67,16 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white py-16 px-4 sm:px-6 md:px-24 flex flex-col gap-20">
+    <div className="min-h-screen bg-white dark:bg-gray-900 py-16 px-4 sm:px-6 md:px-24 flex flex-col gap-20">
       {/* Get in Touch Section - redesigned */}
-      <section className="max-w-7xl mx-auto w-full bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg px-6 py-12">
+      <section className="max-w-7xl mx-auto w-full bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Left: Intro + CTA */}
           <div className="space-y-6">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-black">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-black dark:text-white">
               Let's build something together
             </h1>
-            <p className="text-lg text-gray-700 max-w-xl leading-relaxed">
+            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-xl leading-relaxed">
               Whether you have a project idea, want to collaborate, or need help
               with a technical problem — I'm one message away. Tell me about
               your goals and I'll get back with a clear plan.
@@ -87,29 +87,29 @@ export default function ContactPage() {
 
           {/* Right: Profile card */}
           <div>
-            <Card className="shadow-xl overflow-hidden">
-              <div className="p-6 flex flex-col sm:flex-row items-center gap-6 bg-white">
-                <div className="w-28 h-28 rounded-full overflow-hidden bg-gray-100 flex-shrink-0">
+              <Card className="shadow-xl overflow-hidden bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm">
+                <div className="p-6 flex flex-col sm:flex-row items-center gap-6">
+                <div className="w-28 h-28 rounded-full overflow-hidden bg-gray-100 dark:bg-gray-700 flex-shrink-0">
                   {/* small profile image */}
                   <img src="/profile_pic.png" alt="Profile" className="w-full h-full object-cover" />
                 </div>
 
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold">Rajesh Thapa</h3>
-                    <p className="text-sm text-gray-600">Front-end developer • Web & APIs</p>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Rajesh Thapa</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">Front-end developer • Web & APIs</p>
 
-                  <div className="mt-4 text-sm text-gray-700 space-y-1">
+                  <div className="mt-4 text-sm text-gray-700 dark:text-gray-300 space-y-1">
                     <div className="flex items-center gap-2">
                       <Mail className="w-4 h-4" />
-                      <span className="text-gray-800">rajesh025thapa@gmail.com</span>
+                      <span className="text-gray-800 dark:text-gray-200">rajesh025thapa@gmail.com</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Phone className="w-4 h-4" />
-                      <span className="text-gray-800">+977 9843275701</span>
+                      <span className="text-gray-800 dark:text-gray-200">+977 9843275701</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <MapPin className="w-4 h-4" />
-                      <span>Okhaldhunga, Nepal</span>
+                      <span className="text-gray-800 dark:text-gray-200">Okhaldhunga, Nepal</span>
                     </div>
                   </div>
 
@@ -130,7 +130,7 @@ export default function ContactPage() {
 
   {/* Contact Form Section */}
   <section id="contact-form" className="flex justify-center">
-        <Card className="w-full max-w-xl shadow-lg bg-gradient-to-r from-blue-50 to-blue-100">
+        <Card className="w-full max-w-xl shadow-lg bg-white dark:bg-gray-900">
           <CardHeader>
             <CardTitle className="text-xl">Send Me a Message</CardTitle>
             <CardDescription className="text-md">
@@ -199,7 +199,8 @@ export default function ContactPage() {
               <Button
                 type="submit"
                 disabled={loading}
-                className="mt-4 text-md py-3 bg-black text-white rounded-md hover:scale-105 cursor-pointer transition-transform disabled:opacity-70 disabled:cursor-not-allowed"
+                variant="default"
+                className="mt-4 text-md py-3"
               >
                 {loading ? "Sending..." : "Send Message"}
               </Button>
@@ -212,35 +213,35 @@ export default function ContactPage() {
 
       {/* Social Links Section */}
       <section className="text-center flex flex-col gap-6">
-        <h2 className="text-3xl font-semibold text-black">Connect With Me</h2>
+        <h2 className="text-3xl font-semibold text-black dark:text-white">Connect With Me</h2>
 
         <div className="flex flex-col sm:flex-row justify-center items-center gap-5">
-          <div className="flex items-center gap-3">
-            <Mail className="w-5 h-5 text-black" />
+            <div className="flex items-center gap-3">
+            <Mail className="w-5 h-5 text-black dark:text-white" />
             <a
               href="mailto:pratyoospanta@gmail.com"
-              className="text-black text-md hover:text-blue-500 transition"
+              className="text-black dark:text-white text-md hover:text-black dark:hover:text-gray-300 transition"
             >
               rajesh025thapa@gmail.com
             </a>
           </div>
 
-          <div className="flex items-center gap-3">
-            <Phone className="w-5 h-5 text-black" />
+            <div className="flex items-center gap-3">
+            <Phone className="w-5 h-5 text-black dark:text-white" />
             <a
               href="tel:+9779863481055"
-              className="text-black text-md hover:text-blue-500 transition"
+              className="text-black dark:text-white text-md hover:text-black dark:hover:text-gray-300 transition"
             >
               +977 9843275701
             </a>
           </div>
 
-          <div className="flex items-center gap-3">
-            <MapPin className="w-5 h-5 text-black" />
+            <div className="flex items-center gap-3">
+            <MapPin className="w-5 h-5 text-black dark:text-white" />
             <a
               href="https://maps.app.goo.gl/HLnc5TyUut37TSAE6"
               
-              className="text-black text-md hover:text-blue-500 transition"
+              className="text-black dark:text-white text-md hover:text-black dark:hover:text-gray-300 transition"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -249,13 +250,13 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <div className="flex justify-center gap-6 mt-4 text-lg">
+          <div className="flex justify-center gap-6 mt-4 text-lg">
           <a
             href="https://github.com/rtjsh-dev"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="hover:text-blue-500 transition transform hover:scale-110"
+            className="text-black dark:text-white hover:text-black dark:hover:text-gray-300 transition transform hover:scale-110"
           >
             <FaGithub className="w-6 h-6" />
           </a>
@@ -264,7 +265,7 @@ export default function ContactPage() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="hover:text-blue-500 transition transform hover:scale-110"
+            className="text-black dark:text-white hover:text-black dark:hover:text-gray-300 transition transform hover:scale-110"
           >
             <FaLinkedin className="w-6 h-6" />
           </a>
@@ -273,7 +274,7 @@ export default function ContactPage() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
-            className="hover:text-blue-500 transition transform hover:scale-110"
+            className="text-black dark:text-white hover:text-black dark:hover:text-gray-300 transition transform hover:scale-110"
           >
             <FaInstagram className="w-6 h-6" />
           </a>
@@ -282,7 +283,7 @@ export default function ContactPage() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Discord"
-            className="hover:text-blue-500 transition transform hover:scale-110"
+            className="hover:text-black transition transform hover:scale-110"
           >
             <FaDiscord className="w-6 h-6" />
           </a>
