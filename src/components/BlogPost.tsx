@@ -42,11 +42,7 @@ export default function BlogPost({
           {blog.content}
         </section>
 
-        <footer className="mt-8 pt-6 border-t border-gray-300 dark:border-gray-600">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Written by <strong>{blog.author}</strong>
-          </p>
-        </footer>
+        {/* author removed per request */}
       </article>
     </div>
   );

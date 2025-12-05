@@ -3,13 +3,13 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Learn more about Pratyoos, his skills, projects, and experiences.",
-  keywords: ["About", "Pratyoos", "Projects", "Skills", "Experience", "Full Stack", "React", "Next.js"],
+  description: "Learn more about Rajesh, his skills, projects, and experiences.",
+  keywords: ["About", "Rajesh", "Projects", "Skills", "Experience", "Full Stack", "React", "Next.js"],
   openGraph: {
     title: "About",
-    description: "Learn more about Pratyoos, his skills, projects, and experiences.",
-    url: "https://pratyoos.com.np/about",
-    siteName: "Pratyoos",
+    description: "Learn more about Rajesh, his skills, projects, and experiences.",
+    url: "https://trajesh.com.np/about",
+    siteName: "Rajesh",
     type: "website",
   },
 };

@@ -7,8 +7,8 @@ export const metadata = {
   openGraph: {
     title: "Blogs",
     description: "Read personal blogs about programming, web development, and full stack projects.",
-    url: "https://pratyoos.com.np/blogs",
-    siteName: "Pratyoos",
+    url: "https://trajesh.com.np/blogs",
+    siteName: "Rajesh",
     type: "website",
   },
 };

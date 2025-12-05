@@ -219,7 +219,7 @@ export default function ContactPage() {
             <div className="flex items-center gap-3">
             <Mail className="w-5 h-5 text-black dark:text-white" />
             <a
-              href="mailto:pratyoospanta@gmail.com"
+              href="mailto:rajesh025thapa@gmail.com"
               className="text-black dark:text-white text-md hover:text-black dark:hover:text-gray-300 transition"
             >
               rajesh025thapa@gmail.com

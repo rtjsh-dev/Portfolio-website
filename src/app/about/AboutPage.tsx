@@ -16,14 +16,14 @@ import { certifications } from "../api/constants/certifications";
 
 const experience = [
   {
+    title: "Data Fellow, EXCESS",
+    description: "Got access to DataCamp’s premium resources, incredible opportunity to sharpen my skills in data science, analysis, and visualization along with ML concepts.",
+    period: "Dec 2025 - Present",
+  },
+  {
     title: "Frontend Developer, Sayapatri Group",
     description: "Build user interfaces and frontend systems using React.js and collaborate with teams to develop responsive web applications.",
     period: "Jun 2025 - Present",
-  },
-  {
-    title: "Data Fellow, Code for Nepal",
-    description: "Got access to DataCamp’s premium resources, incredible opportunity to sharpen my skills in data science, analysis, and visualization along with ML concepts.",
-    period: "Oct 2025 - Present",
   },
   {
     title: "Technical Coordinator, ACES",

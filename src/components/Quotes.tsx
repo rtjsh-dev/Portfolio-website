@@ -11,7 +11,7 @@ type Quote = {
 };
 
 export default function QuoteOfTheDay() {
-  const [quote, setQuote] = useState<Quote>({ quote: "", author: "", category: "" });
+  const [quote, setQuote] = useState<Quote>({ quote: "One shall stand, one shall fall. Life has no Ctrl+Z.", author: "", category: "" });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -20,16 +20,16 @@ export default function QuoteOfTheDay() {
         const res = await fetch("/api/quote");
         const data = await res.json();
         setQuote({
-          quote: data.quote || "Keep pushing forward!",
-          author: data.author || "Unknown",
-          category: data.category || "Motivational",
+          quote: data.quote || "One shall stand, one shall fall. Life has no Ctrl+Z.",
+          author: data.author || "",
+          category: data.category || "",
         });
       } 
       catch (err) {
         setQuote({
-          quote: "Keep pushing forward!",
-          author: "Unknown",
-          category: "Motivational",
+          quote: "One shall stand, one shall fall. Life has no Ctrl+Z.",
+          author: "",
+          category: "",
         });
       } finally {
         setLoading(false);
@@ -58,13 +58,14 @@ export default function QuoteOfTheDay() {
             "{quote.quote}"
           </CardTitle>
 
-          {/* Author */}
-          <CardDescription className="text-sm md:text-base text-gray-500 dark:text-gray-300">
-            — {quote.author}
-          </CardDescription>
+          {/* Author (only show if provided) */}
+          {quote.author && (
+            <CardDescription className="text-sm md:text-base text-gray-500 dark:text-gray-300">
+              — {quote.author}
+            </CardDescription>
+          )}
 
-          {/* Category Badge */}
-          <Badge className="mt-2 uppercase tracking-wider">{quote.category}</Badge>
+          {/* Category Badge removed as requested */}
         </CardContent>
       </Card>
     </div>
