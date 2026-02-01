@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef } from "react";
-import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiNodedotjs, SiExpress, SiGit } from "react-icons/si";
+import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiNodedotjs, SiExpress, SiGit, SiDjango } from "react-icons/si";
 import { MdDevices } from "react-icons/md";
 import { FaGithub, FaInstagram, FaLinkedin, FaDiscord } from "react-icons/fa";
 
@@ -141,6 +141,7 @@ export default function AboutPage() {
                 { name: "TypeScript", icon: SiTypescript, url: "https://www.typescriptlang.org/", color: "#3178C6" },
                 { name: "Tailwind", icon: SiTailwindcss, url: "https://tailwindcss.com/", color: "#06B6D4" },
                 { name: "Node.js", icon: SiNodedotjs, url: "https://nodejs.org/", color: "#339933" },
+                { name: "Django", icon: SiDjango, url: "https://www.djangoproject.com/", color: "#092E20" },
                 { name: "Express", icon: SiExpress, url: "https://expressjs.com/", color: "#000000" },
                 { name: "Git", icon: SiGit, url: "https://git-scm.com/", color: "#F05032" },
                 { name: "Responsive UI", icon: MdDevices, url: "https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design", color: "#7C3AED" },
