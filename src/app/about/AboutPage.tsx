@@ -57,7 +57,7 @@ export default function AboutPage() {
 
               <div className="text-center mt-2">
                 <h3 className="text-3xl font-semibold text-gray-900 dark:text-white">Rajesh Thapa</h3>
-                <p className="text-base text-gray-600 dark:text-gray-400">Full Stack Developer</p>
+                <p className="text-base text-gray-600 dark:text-gray-400">Front-end Developer</p>
                 <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">"Life has no Ctrl+Z."</p>
               </div>
 
