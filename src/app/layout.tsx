@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Roboto, Playfair_Display, Inter } from "next/font/google"; 
+import { Roboto, Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import ChatBotWidget from "@/components/ChatBotWidget";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@/context/ThemeContext";
 
@@ -39,6 +40,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Navbar />
           <main className="container mx-auto px-4">{children}</main>
+          <ChatBotWidget />
           <Toaster position="top-center" />
           <Footer />
           <ScrollToTop />

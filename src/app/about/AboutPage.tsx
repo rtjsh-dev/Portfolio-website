@@ -13,42 +13,7 @@ import QuoteOfTheDay from "@/components/Quotes";
 import AnimatedNumber from "@/components/AnimatedNumber";
 import { projectsData } from "../api/constants/projects";
 import { certifications } from "../api/constants/certifications";
-
-const experience = [
-  {
-    title: "Data Fellow, EXCESS",
-    description: "Got access to DataCamp’s premium resources, incredible opportunity to sharpen my skills in data science, analysis, and visualization along with ML concepts.",
-    period: "Dec 2025 - Present",
-  },
-  {
-    title: "Frontend Developer, Sayapatri Group",
-    description: "Build user interfaces and frontend systems using React.js and collaborate with teams to develop responsive web applications.",
-    period: "Jun 2025 - Present",
-  },
-  {
-    title: "Technical Coordinator, ACES",
-    description: "Lead a dynamic team dedicated to fostering technical excellence and professional growth within the student community",
-    period: "Feb 2025 - Present",
-  }
-];
-
-const education = [
-  {
-    title: "B.E. Computer Engineering",
-    description: "Tribhuvan University, IOE Purwanchal Campus",
-    period: "2023 - Present",
-  },
-  {
-    title: "+2 Science",
-    description: "Kathmandu Model College",
-    period: "2020 - 2022",
-  },
-  {
-    title: "Secondary Education",
-    description: "Lali Guransh English Secondary School",
-    period: "2010 - 2020",
-  },
-];
+import { experience, education, contactInfo } from "./data";
 
 export default function AboutPage() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -97,16 +62,16 @@ export default function AboutPage() {
               </div>
 
               <div className="flex items-center justify-center gap-4 mt-3 text-lg">
-                <a href="https://github.com/rtjsh-dev" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hover:text-[#F05032] transition transform hover:scale-110">
+                <a href={contactInfo.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hover:text-[#F05032] transition transform hover:scale-110">
                   <FaGithub className="w-6 h-6" />
                 </a>
-                <a href="https://www.linkedin.com/in/rtjsh" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-[#0A66C2] transition transform hover:scale-110">
+                <a href={contactInfo.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-[#0A66C2] transition transform hover:scale-110">
                   <FaLinkedin className="w-6 h-6" />
                 </a>
-                <a href="https://instagram.com/_rt1s__/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[#E1306C] transition transform hover:scale-110">
+                <a href={contactInfo.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[#E1306C] transition transform hover:scale-110">
                   <FaInstagram className="w-6 h-6" />
                 </a>
-                <a href="https://discord.com/users/razesh_06878" target="_blank" rel="noopener noreferrer" aria-label="Discord" className="hover:text-[#5865F2] transition transform hover:scale-110">
+                <a href={contactInfo.discord} target="_blank" rel="noopener noreferrer" aria-label="Discord" className="hover:text-[#5865F2] transition transform hover:scale-110">
                   <FaDiscord className="w-6 h-6" />
                 </a>
               </div>
