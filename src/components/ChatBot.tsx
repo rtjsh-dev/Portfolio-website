@@ -13,7 +13,11 @@ type ChatMessage = {
   content: string;
 };
 
-export default function ChatBot() {
+type ChatBotProps = {
+  onClose?: () => void;
+};
+
+export default function ChatBot({ onClose }: ChatBotProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: "welcome",
@@ -102,27 +106,32 @@ export default function ChatBot() {
   }, [messages]);
 
   return (
-    <Card className="shadow-xl bg-white/90 dark:bg-gray-900/90 border border-gray-200 dark:border-gray-800">
-      <CardHeader>
+    <Card className="h-full flex flex-col shadow-xl bg-white/90 dark:bg-gray-900/90 border border-gray-200 dark:border-gray-800 overflow-hidden">
+      <CardHeader className="shrink-0">
         <div className="flex flex-col gap-2">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <CardTitle>24/7 AI Chatbot</CardTitle>
-              <CardDescription>
-                Talk to the AI assistant anytime for help with the portfolio, projects, and workflow.
-              </CardDescription>
+              <CardTitle className="text-base">AI Chat</CardTitle>
+              {/* <CardDescription>
+                Ask me anything about the portfolio, projects, or skills.
+              </CardDescription> */}
             </div>
+            {onClose ? (
+              <Button variant="outline" size="sm" type="button" onClick={onClose}>
+                Close
+              </Button>
+            ) : null}
           </div>
         </div>
       </CardHeader>
-      <CardContent>
-        <div className="space-y-4 mb-6 max-h-[420px] overflow-y-auto pr-1">
+      <CardContent className="flex flex-1 flex-col gap-4 px-6 py-4 overflow-hidden">
+        <div className="flex-1 min-h-0 space-y-4 overflow-y-auto pr-1">
           {messages.map((message) => (
             <div
               key={message.id}
               className={`rounded-2xl p-4 ${message.role === "user"
-                ? "bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-slate-100 self-end"
-                : "bg-slate-900 text-white dark:bg-slate-800 dark:text-white"
+                ? "bg-slate-700 text-slate-100 dark:bg-slate-800 dark:text-slate-100 self-end"
+                : "bg-slate-900 text-white dark:bg-slate-900 dark:text-white"
                 }`}
             >
               <div className="text-sm font-medium capitalize mb-2">{message.role === "user" ? "You" : "Assistant"}</div>

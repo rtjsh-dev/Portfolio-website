@@ -8,9 +8,9 @@ export default function ChatBotWidget() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end">
+    <div className="fixed bottom-5 left-0 right-0 z-50 flex flex-col items-center px-3 sm:right-5 sm:left-auto sm:items-end sm:px-0">
       {open && (
-        <div className="mb-3 w-[380px] max-w-full h-[560px] rounded-3xl shadow-2xl bg-white/95 dark:bg-slate-900/90 ring-1 ring-slate-200 dark:ring-slate-700 backdrop-blur-xl overflow-hidden">
+        <div className="mb-3 w-full max-w-[380px] h-[560px] max-h-[calc(100vh-5rem)] rounded-3xl shadow-2xl bg-white/95 dark:bg-slate-900/90 ring-1 ring-slate-200 dark:ring-slate-700 backdrop-blur-xl overflow-hidden">
           <div className="flex items-center justify-between gap-3 border-b border-slate-200/80 dark:border-slate-700/80 bg-slate-950/95 px-4 py-3">
             <div className="flex items-center gap-3">
               <div className="grid place-items-center rounded-2xl bg-slate-700 p-2 text-white">
@@ -30,8 +30,8 @@ export default function ChatBotWidget() {
               <X className="h-4 w-4" />
             </button>
           </div>
-          <div className="h-[500px] overflow-hidden">
-            <ChatBot />
+          <div className="flex h-full flex-col overflow-hidden">
+            <ChatBot onClose={() => setOpen(false)} />
           </div>
         </div>
       )}
